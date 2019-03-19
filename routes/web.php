@@ -15,7 +15,18 @@ Route::get('/', function () {
     return view('main.index');
 });
 
+/*Authentication Controller*/
+Auth::routes();
 
+Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+
+
+/*General/Main Controller*/
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/*Job Controller*/
 Route::group(['prefix' => 'job'], function () 
 {
     Route::get('/post', ['as' => 'postjob', 'uses' =>'JobController@postJob']);
@@ -24,19 +35,15 @@ Route::group(['prefix' => 'job'], function ()
 
     Route::get('/post/alljobs', ['as' => 'index', 'uses' =>'PostingController@index']);
 
-    Route::get('/post/alljobs/details/{job_id}', ['as' => 'getdisplay', 'uses' => 'PostingController@getdisplay']);
-
-	Route::get('/validation',function()
-	{
-     return view('validation');
- 	});
-
-    
+    Route::get('/post/alljobs/details/{job_id}', ['as' => 'getdisplay', 'uses' => 'PostingController@getdisplay']);   
 
     Route::get('/search',  ['as' => 'search', 'uses' =>'PostingController@search']);
 
     Route::post('/search/searchcontent',  ['as' => 'searchcontent', 'uses' =>'PostingController@searchcontent']);
    
 
-     });
+});
 	
+
+
+
