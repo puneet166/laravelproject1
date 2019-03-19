@@ -8,6 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+ /*public function roles()
+ {
+     return $this->belongsToMany('App\Role');
+ }*/
+
+
+
+
+
     use Notifiable;
 
     /**
@@ -16,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname','lastname', 'email', 'password','verifyToken',
     ];
 
     /**
@@ -24,7 +33,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
+ protected $hidden = [
         'password', 'remember_token',
     ];
 
@@ -33,7 +42,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
+   /* protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 }
+
+*/}
