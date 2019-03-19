@@ -39,7 +39,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="single-channel.html">
+               <a class="nav-link" href="job/post">
                <i class="fas fa-fw fa-user-alt"></i>
                <span>Job Portal</span>
                </a>
