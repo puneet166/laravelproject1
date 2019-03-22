@@ -8,13 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
- /*public function roles()
- {
-     return $this->belongsToMany('App\Role');
- }*/
-
-
-
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role','user_role','user_id','role_id');
+    }
 
 
     use Notifiable;
@@ -33,7 +30,7 @@ class User extends Authenticatable
      *
      * @var array
      */
- protected $hidden = [
+    protected $hidden = [
         'password', 'remember_token',
     ];
 
@@ -47,4 +44,36 @@ class User extends Authenticatable
     ];
 }
 
-*/}
+*/
+    public function hasAnyRole($roles)
+    {
+        if(is_array($roles))
+        {
+            foreach ($roles as $role) {
+                if($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        }
+        else{
+            if($this->hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function hasRole($role)
+    {
+        if($this->roles()->where('name',$role)->first()) {
+            return true;
+        }
+        return false;
+    }
+    public function user_roles()
+    {
+        $query = $this->roles()->first();
+        return $query;
+    }
+
+
+}

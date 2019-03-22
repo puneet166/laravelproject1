@@ -1,26 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{config('app.name','UDYOGTV')}}</title>
-        	<style>
-		        	table 
-		        	{
-						  display: table;
-						  border-collapse: separate;
-
-					}
-					table, th, td 
-					{
-						border: 1px solid black;
-						padding:6px;
-						width: 50px;
-					}				  
-      		</style>  
-    </head>
+@extends('layout.master')
     
-    <body>
+@section('content')
 
     	<div>
     		<div>
@@ -31,7 +11,7 @@
           <form method="get" action="{{ route('index') }}">  
              {{ csrf_field() }}
         <br/>
-        <table align="center" border-spacing= "2px" bgcolor="" order-color= "gray">
+        <table class="table table-hover table-striped table-bordered">
         	<tr>
         		<th>job_id</th>
         		<th>job_title</th>
@@ -66,5 +46,5 @@
 	</div>
 	</div>
     
-    </body>
-</html>
+
+@endsection

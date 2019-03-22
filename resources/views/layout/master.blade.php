@@ -13,11 +13,14 @@
       <!-- Favicon Icon -->
       <link rel="icon" type="image/png" href="/img/udyog_logo.png">
       <!-- Bootstrap core CSS-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <!-- Custom styles for this template-->
       <link href="/css/app.css" rel="stylesheet">
+      <link href="/css/style.css" rel="stylesheet">
       <!-- Owl Carousel -->
       <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
       <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+      @stack('topscript')
    </head>
    <body >
       <div class='thetop'></div>
@@ -84,7 +87,9 @@
           <div class='scroll icon '><i class="fa fa-4x fa-angle-up rounded"></i></div>
       </div>
      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script type="text/javascript" src="/js/app.js"></script>
+      @stack('bottomscript')
    </body>
 
 </html>

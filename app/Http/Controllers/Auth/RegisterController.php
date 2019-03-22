@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth ;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -69,36 +70,41 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-    $user =  User::create([
-            'firstname' => $data['firstname'],
-            
-            'lastname' => $data['lastname'],
-            
-            'email' => $data['email'],
-            
-        'password' => Hash::make($data['password']),
-        'verifyToken'=>Str::random(40),
-        ]);
+        $user =  User::create([
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'verifyToken'=>Str::random(40),
+            ]);
+
+        $user->roles()->attach(Role::where('name','General User')->first());
+
         $thisUser = User::findOrFail($user->id);
-    $this->sendEmail($thisUser);
-}
-public function sendEmail($thisUser)
-{
-Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
-}
-public function verifyEmailFirst()
-{
-    return view('email.verifyEmailFirst');
-}
-public function sendEmailDone($email,$verifyToken)
-{
-$user=User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
-if($user)
-{
-    return user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);
-}
-else{
-    return 'user not found';
-}
-}
+
+
+        $this->sendEmail($thisUser);
+    }
+
+    public function sendEmail($thisUser)
+    {
+        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    }
+
+    public function verifyEmailFirst()
+    {
+        return view('email.verifyEmailFirst');
+    }
+
+    public function sendEmailDone($email,$verifyToken)
+    {
+        $user=User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
+        if($user)
+        {
+            return user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>'1','verifyToken'=>NULL]);
+        }
+        else{
+            return 'user not found';
+        }
+    }
 }
