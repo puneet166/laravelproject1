@@ -20,6 +20,12 @@
       <!-- Owl Carousel -->
       <link rel="stylesheet" href="/vendor/owl-carousel/owl.carousel.css">
       <link rel="stylesheet" href="/vendor/owl-carousel/owl.theme.css">
+
+      <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+   
+        <!--===============================================================================================-->
+      <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
       @stack('topscript')
    </head>
    <body >

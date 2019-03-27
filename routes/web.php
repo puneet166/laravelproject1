@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('main.index');
 });
+Route::get('/puneet', function () {
+    return view('auth.reg');
+});
 
 /*Authentication Controller*/
 Auth::routes();

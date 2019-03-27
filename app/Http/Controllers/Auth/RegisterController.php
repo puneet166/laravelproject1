@@ -76,8 +76,8 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'verifyToken'=>Str::random(40),
+                'status' => 0,
             ]);
-
         $user->roles()->attach(Role::where('name','General User')->first());
 
         $thisUser = User::findOrFail($user->id);
